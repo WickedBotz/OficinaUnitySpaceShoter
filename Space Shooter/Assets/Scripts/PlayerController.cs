@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody rb;
     private AudioSource audioSource;
+    public Boundary boundary;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -17,11 +18,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     public float speed;
-    public float tilt;
-    public Boundary boundary;
+    public float iniclinacao;
+    
 
-    public GameObject shot;
-    public Transform[] shotSpawns;
+    public GameObject tiros;
+    public Transform[] criaTiros;
    // public Transform shotSpawnLeft;
     public float fireRate;
 
@@ -31,11 +32,11 @@ public class PlayerController : MonoBehaviour {
         //Ao perceber que botao esquerdo do mouse for clicado, criar as balas no espaço.
         if (Input.GetButton("Fire1") && Time.time > nextFire) {
             nextFire = Time.time + fireRate;
-            foreach(var shotspawn in shotSpawns) {
-                Instantiate(shot, shotspawn.position, shotspawn.rotation);
+            foreach(var shotspawn in criaTiros) {
+                Instantiate(tiros, shotspawn.position, shotspawn.rotation);
             }
-           // Instantiate(shot, shotSpawnRight.position, shotSpawnRight.rotation);      
-           // Instantiate(shot, shotSpawnLeft.position, shotSpawnLeft.rotation);
+           // Instantiate(tiros, shotSpawnRight.position, shotSpawnRight.rotation);      
+           // Instantiate(tiros, shotSpawnLeft.position, shotSpawnLeft.rotation);
             audioSource.Play();
         }
     }
@@ -56,6 +57,6 @@ public class PlayerController : MonoBehaviour {
             Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
         );
         //Rotação da nave em movimento.
-        rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -tilt);
+        rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -iniclinacao);
     }
 }

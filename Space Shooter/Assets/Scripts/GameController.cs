@@ -4,7 +4,7 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
     public GameObject[] hazards;
-    public Vector3 spawnValues;
+    private Vector3 spawnValues;
     public int hazardCount;
     public float spawnWait;
     public float startWait;
@@ -19,6 +19,9 @@ public class GameController : MonoBehaviour {
     private int score;
 
     void Start() {
+        spawnValues.x = 7;
+        spawnValues.y = 0;
+        spawnValues.z = 16;
         gameOver = false;
         restart = false;
         restartText.text = "";
