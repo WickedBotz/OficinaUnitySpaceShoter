@@ -1,0 +1,3 @@
+X = horizontal
+Y = Vertical (Profundidade)
+z = Pra cima ou baixo
